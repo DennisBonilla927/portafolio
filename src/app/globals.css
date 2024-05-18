@@ -31,3 +31,15 @@ body {
     text-wrap: balance;
   }
 }
+
+.contenido-seccion .fila.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem; /* Espacio entre las tarjetas */
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
