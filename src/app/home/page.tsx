@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBars,
@@ -49,6 +49,82 @@ export default function Inicio() {
       document.querySelector('.nav-responsive').removeEventListener('click', mostrarOcultarMenu);
     }; */
   }, []);
+
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log(formData);
+    
+    try {
+      const response = await fetch("/api/send", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      const result = await response.json();
+      console.log(result);
+      
+      if (response.ok) {
+        alert("Mensaje enviado correctamente!");
+      } else {
+        alert(`Error: ${result.message}`);
+      }
+    } catch (error) {
+      alert("Error enviando el mensaje.");
+    }
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const skills = document.getElementById("skills");
+      if (skills) {
+        const distanciaSkills =
+          window.innerHeight - skills.getBoundingClientRect().top;
+        if (distanciaSkills >= 300) {
+          let habilidades = document.getElementsByClassName("progreso");
+          habilidades[0].classList.add("javascript");
+          habilidades[1].classList.add("htmlcss");
+          habilidades[2].classList.add("photoshop");
+          habilidades[3].classList.add("wordpress");
+          habilidades[4].classList.add("drupal");
+          habilidades[5].classList.add("comunicacion");
+          habilidades[6].classList.add("trabajo");
+          habilidades[7].classList.add("creatividad");
+          habilidades[8].classList.add("dedicacion");
+          habilidades[9].classList.add("proyect");
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const handleDownload = () => {
+    window.open(
+      "https://drive.google.com/file/d/1pZUvPJw51DKEhXpGJ3yy_yStwvAgV6mL/view?usp=sharing",
+      "_blank"
+    );
+  };
 
   return (
     <>
@@ -121,19 +197,16 @@ export default function Inicio() {
               <h3>Datos Personales</h3>
               <ul>
                 <li>
-                  <strong>Cumpleaños</strong> 15-01-1980
+                  <strong>Cumpleaños</strong> 06-04-2001
                 </li>
                 <li>
-                  <strong>Teléfono</strong> 2555 5454545
-                </li>
-                <li>
-                  <strong>Email</strong> cw@example.com
+                  <strong>LInkedin</strong> Dennis Bonilla Granja
                 </li>
                 <li>
                   <strong>Website</strong> www.example.com
                 </li>
                 <li>
-                  <strong>Dirección</strong> 123 San Luis, Argentina
+                  <strong>Dirección</strong> Baños, Ecuador
                 </li>
                 <li>
                   <strong>Cargo</strong> <span>FREELANCE</span>
@@ -178,7 +251,7 @@ export default function Inicio() {
               </div>
             </div>
           </div>
-          <button>
+          <button onClick={handleDownload}>
             Descargar CV <FontAwesomeIcon icon={faDownload} />
             <span className="overlay"></span>
           </button>
@@ -208,15 +281,15 @@ export default function Inicio() {
                 </div>
               </div>
               <div className="skill">
-                <span>Photoshop</span>
+                <span>TypeScript</span>
                 <div className="barra-skill">
                   <div className="progreso">
-                    <span>95%</span>
+                    <span>80%</span>
                   </div>
                 </div>
               </div>
               <div className="skill">
-                <span>Wordpress</span>
+                <span>React</span>
                 <div className="barra-skill">
                   <div className="progreso">
                     <span>81%</span>
@@ -224,7 +297,7 @@ export default function Inicio() {
                 </div>
               </div>
               <div className="skill">
-                <span>Drupa</span>
+                <span>Angular</span>
                 <div className="barra-skill">
                   <div className="progreso">
                     <span>55%</span>
@@ -286,42 +359,12 @@ export default function Inicio() {
             <div className="col izquierda">
               <h3>Educación</h3>
               <div className="item izq">
-                <h4>Arte y Multimedia</h4>
-                <span className="casa">Universidad de Oxford</span>
-                <span className="fecha">2005 - 2008</span>
+                <h4>Ingenieria de Software</h4>
+                <span className="casa">Universidad Técnica de Ambato</span>
+                <span className="fecha">2019 - 2025</span>
                 <p>
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Quis, cumque repellat, tempora recusandae aliquam nemo esse
-                  natus impedit, nostrum temporibus veritatis eaque soluta
-                  aperiam id repudiandae fugiat deserunt! Explicabo, veritatis?
-                </p>
-                <div className="conectori">
-                  <div className="circuloi"></div>
-                </div>
-              </div>
-              <div className="item izq">
-                <h4>Diseño Grafico</h4>
-                <span className="casa">Universidad de Harvard</span>
-                <span className="fecha">2008 - 2012</span>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Quis, cumque repellat, tempora recusandae aliquam nemo esse
-                  natus impedit, nostrum temporibus veritatis eaque soluta
-                  aperiam id repudiandae fugiat deserunt! Explicabo, veritatis?
-                </p>
-                <div className="conectori">
-                  <div className="circuloi"></div>
-                </div>
-              </div>
-              <div className="item izq">
-                <h4>Diploma en Tipografia</h4>
-                <span className="casa">Universidad de Stanford</span>
-                <span className="fecha">2012 - 2016</span>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Quis, cumque repellat, tempora recusandae aliquam nemo esse
-                  natus impedit, nostrum temporibus veritatis eaque soluta
-                  aperiam id repudiandae fugiat deserunt! Explicabo, veritatis?
+                  Me gradué de Ingeniero de software en esta universidad
+                  principalmente con conocimiento en desarrollo web
                 </p>
                 <div className="conectori">
                   <div className="circuloi"></div>
@@ -331,42 +374,14 @@ export default function Inicio() {
             <div className="col derecha">
               <h3>Experiencia</h3>
               <div className="item der">
-                <h4>Ingeniero de Software</h4>
-                <span className="casa">Spotify</span>
-                <span className="fecha">2016 - 2018</span>
+                <h4>Practicas laborales </h4>
+                <span className="casa">
+                  Mancomunidad de tránsito de Tungurahua
+                </span>
+                <span className="fecha">Enero 2024 - Abril 2024</span>
                 <p>
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Quis, cumque repellat, tempora recusandae aliquam nemo esse
-                  natus impedit, nostrum temporibus veritatis eaque soluta
-                  aperiam id repudiandae fugiat deserunt! Explicabo, veritatis?
-                </p>
-                <div className="conectord">
-                  <div className="circulod"></div>
-                </div>
-              </div>
-              <div className="item der">
-                <h4>Web Developer</h4>
-                <span className="casa">Amazon</span>
-                <span className="fecha">2018 - 2020</span>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Quis, cumque repellat, tempora recusandae aliquam nemo esse
-                  natus impedit, nostrum temporibus veritatis eaque soluta
-                  aperiam id repudiandae fugiat deserunt! Explicabo, veritatis?
-                </p>
-                <div className="conectord">
-                  <div className="circulod"></div>
-                </div>
-              </div>
-              <div className="item der">
-                <h4>Desarrollador Front-End</h4>
-                <span className="casa">Facebook</span>
-                <span className="fecha">2020 - 2022</span>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Quis, cumque repellat, tempora recusandae aliquam nemo esse
-                  natus impedit, nostrum temporibus veritatis eaque soluta
-                  aperiam id repudiandae fugiat deserunt! Explicabo, veritatis?
+                  Desarrolle una aplicacion web y movil de permisos y vacaciones
+                  donde trabaje en el frontend y backend
                 </p>
                 <div className="conectord">
                   <div className="circulod"></div>
@@ -378,148 +393,195 @@ export default function Inicio() {
       </section>
 
       <section className="portfolio" id="portfolio">
-      <div className="contenido-seccion">
-        <h2>Portfolio</h2>
-        <div className="fila grid ml-32">
-          <div className="card max-w-sm bg-white border border-gray-200 rounded-lg shadow" style={{ backgroundColor: '#1e2326', borderColor: '#1e2326' }}>
-            <a href="#">
-              <img className="rounded-t-lg" src="p2.jpg" alt="Portfolio item" />
-            </a>
-            <div className="p-5">
+        <div className="contenido-seccion">
+          <h2>Portfolio</h2>
+          <div className="fila grid ml-32">
+            <div
+              className="card max-w-sm bg-white border border-gray-200 rounded-lg shadow"
+              style={{ backgroundColor: "#1e2326", borderColor: "#1e2326" }}
+            >
               <a href="#">
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                  Noteworthy technology acquisitions 2021
-                </h5>
+                <img
+                  className="rounded-t-lg"
+                  src="p2.jpg"
+                  alt="Portfolio item"
+                />
               </a>
-              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.
-              </p>
-              <div className="botonEspecial">
-              <button>
-              Revisar <FontAwesomeIcon icon={faArrowRight} />
-              <span className="overlay"></span>
-            </button>
-              </div>
-              
-            </div>
-          </div>
-          {/* Repite el bloque anterior para los otros tres elementos */}
-          <div className="card max-w-sm bg-white border border-gray-200 rounded-lg shadow" style={{ backgroundColor: '#1e2326', borderColor: '#1e2326' }}>
-            <a href="#">
-              <img className="rounded-t-lg" src="p2.jpg" alt="Portfolio item" />
-            </a>
-            <div className="p-5">
-              <a href="#">
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                  Noteworthy technology acquisitions 2021
-                </h5>
-              </a>
-              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.
-              </p>
-              <div className="botonEspecial">
-              <button>
-              Revisar <FontAwesomeIcon icon={faArrowRight} />
-              <span className="overlay"></span>
-            </button>
+              <div className="p-5">
+                <a href="#">
+                  <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                    Noteworthy technology acquisitions 2021
+                  </h5>
+                </a>
+                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                  Here are the biggest enterprise technology acquisitions of
+                  2021 so far, in reverse chronological order.
+                </p>
+                <div className="botonEspecial">
+                  <button>
+                    Revisar <FontAwesomeIcon icon={faArrowRight} />
+                    <span className="overlay"></span>
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="card max-w-sm bg-white border border-gray-200 rounded-lg shadow" style={{ backgroundColor: '#1e2326', borderColor: '#1e2326' }}>
-            <a href="#">
-              <img className="rounded-t-lg" src="p2.jpg" alt="Portfolio item" />
-            </a>
-            <div className="p-5">
+            {/* Repite el bloque anterior para los otros tres elementos */}
+            <div
+              className="card max-w-sm bg-white border border-gray-200 rounded-lg shadow"
+              style={{ backgroundColor: "#1e2326", borderColor: "#1e2326" }}
+            >
               <a href="#">
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                  Noteworthy technology acquisitions 2021
-                </h5>
+                <img
+                  className="rounded-t-lg"
+                  src="p2.jpg"
+                  alt="Portfolio item"
+                />
               </a>
-              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.
-              </p>
-              <div className="botonEspecial">
-              <button>
-              Revisar <FontAwesomeIcon icon={faArrowRight} />
-              <span className="overlay"></span>
-            </button>
+              <div className="p-5">
+                <a href="#">
+                  <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                    Noteworthy technology acquisitions 2021
+                  </h5>
+                </a>
+                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                  Here are the biggest enterprise technology acquisitions of
+                  2021 so far, in reverse chronological order.
+                </p>
+                <div className="botonEspecial">
+                  <button>
+                    Revisar <FontAwesomeIcon icon={faArrowRight} />
+                    <span className="overlay"></span>
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="card max-w-sm bg-white border border-gray-200 rounded-lg shadow" style={{ backgroundColor: '#1e2326', borderColor: '#1e2326' }}>
-            <a href="#">
-              <img className="rounded-t-lg" src="p2.jpg" alt="Portfolio item" />
-            </a>
-            <div className="p-5">
+            <div
+              className="card max-w-sm bg-white border border-gray-200 rounded-lg shadow"
+              style={{ backgroundColor: "#1e2326", borderColor: "#1e2326" }}
+            >
               <a href="#">
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                  Noteworthy technology acquisitions 2021
-                </h5>
+                <img
+                  className="rounded-t-lg"
+                  src="p2.jpg"
+                  alt="Portfolio item"
+                />
               </a>
-              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.
-              </p>
-              <div className="botonEspecial">
-              <button>
-              Revisar <FontAwesomeIcon icon={faArrowRight} />
-              <span className="overlay"></span>
-            </button>
+              <div className="p-5">
+                <a href="#">
+                  <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                    Noteworthy technology acquisitions 2021
+                  </h5>
+                </a>
+                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                  Here are the biggest enterprise technology acquisitions of
+                  2021 so far, in reverse chronological order.
+                </p>
+                <div className="botonEspecial">
+                  <button>
+                    Revisar <FontAwesomeIcon icon={faArrowRight} />
+                    <span className="overlay"></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div
+              className="card max-w-sm bg-white border border-gray-200 rounded-lg shadow"
+              style={{ backgroundColor: "#1e2326", borderColor: "#1e2326" }}
+            >
+              <a href="#">
+                <img
+                  className="rounded-t-lg"
+                  src="p2.jpg"
+                  alt="Portfolio item"
+                />
+              </a>
+              <div className="p-5">
+                <a href="#">
+                  <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                    Noteworthy technology acquisitions 2021
+                  </h5>
+                </a>
+                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                  Here are the biggest enterprise technology acquisitions of
+                  2021 so far, in reverse chronological order.
+                </p>
+                <div className="botonEspecial">
+                  <button>
+                    Revisar <FontAwesomeIcon icon={faArrowRight} />
+                    <span className="overlay"></span>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
       <section id="contacto" className="contacto">
-      <div className="contenido-seccion">
-        <h2>CONTACTO</h2>
-        <div className="fila">
-          {/* Formulario */}
-          <div className="col">
-            <input type="text" placeholder="Tú Nombre" />
-            <input type="text" placeholder="Número telefónico" />
-            <input type="text" placeholder="Dirección de correo" />
-            <input type="text" placeholder="Tema" />
-            <textarea cols="30" rows="10" placeholder="Mensaje"></textarea>
-            <button>
-              Enviar Mensaje <FontAwesomeIcon icon={faPaperPlane} />
-              <span className="overlay"></span>
-            </button>
-          </div>
-          {/* Mapa */}
-          <div className="col">
-            <img src="/ubicacion.png" alt="Ubicación" />
-            <div className="info">
-              <ul>
-                <li>
-                  <FontAwesomeIcon icon={faLocationDot} />
-                  Nicaragua 159, San Rafael Mza
-                </li>
-                <li>
-                  <FontAwesomeIcon icon={faMobileScreen} />
-                  Llamanos: 2384 - 4343443
-                </li>
-                <li>
-                  <FontAwesomeIcon icon={faEnvelope} />
-                  Email: cw@example.com
-                </li>
-              </ul>
-            </div>
+        <div className="contenido-seccion">
+          <h2>CONTACTO</h2>
+          <div className="fila">
+            {/* Formulario */}
+            <form onSubmit={handleSubmit} className="col">
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Tú Nombre"
+                  onChange={handleChange}
+                  value={formData.name}
+                />
+                <input
+                  type="text"
+                  name="phone"
+                  placeholder="Número telefónico"
+                  onChange={handleChange}
+                  value={formData.phone}
+                />
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Dirección de correo"
+                  onChange={handleChange}
+                  value={formData.email}
+                />
+                <input
+                  type="text"
+                  name="subject"
+                  placeholder="Tema"
+                  onChange={handleChange}
+                  value={formData.subject}
+                />
+                <textarea
+                  name="message"
+                  cols="30"
+                  rows="10"
+                  placeholder="Mensaje"
+                  onChange={handleChange}
+                  value={formData.message}
+                ></textarea>
+                <button type="submit">
+                  Enviar Mensaje <FontAwesomeIcon icon={faPaperPlane} />
+                  <span className="overlay"></span>
+                </button>
+              </form>
+            {/* Mapa */}
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <footer>
+      <footer>
         <a href="#inicio" className="arriba">
-        <FontAwesomeIcon icon={faAnglesUp} />
+          <FontAwesomeIcon icon={faAnglesUp} />
         </a>
         <div className="redes">
-            <a href="#"><FontAwesomeIcon icon={faGithub} /></a>
-            <a href="#"><FontAwesomeIcon icon={faLinkedinIn} /></a>
+          <a href="#">
+            <FontAwesomeIcon icon={faGithub} />
+          </a>
+          <a href="#">
+            <FontAwesomeIcon icon={faLinkedinIn} />
+          </a>
         </div>
-    </footer>
+      </footer>
     </>
   );
 }
