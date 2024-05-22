@@ -5,7 +5,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-export async function POST(req,res) {
+export async function POST(req:any,res:any) {
   try {
     //const { name, phone, email, subject, message } = await req.json();
     const body = await req.json();
