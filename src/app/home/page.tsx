@@ -428,84 +428,63 @@ export default function Inicio() {
       </section>
 
       <section className="portfolio" id="portfolio">
-        <div className="contenido-seccion">
-          <h2>Portfolio</h2>
-          <div className="grid-container">
-            <div className="card">
-              <a href="#">
-                <img
-                  className="rounded-t-lg"
-                  src="Gestion Domcumental.jpeg"
-                  alt="Portfolio item"
-                />
-              </a>
-              <div className="p-5">
-                <a href="#">
-                  <h5>Sistema Documental FISEI</h5>
-                </a>
-                <p>
-                  Sistema Documental FISEI de la Facultad de Ingeniería en
-                  Sistemas, Electrónica e Industrial
-                </p>
-                <div className="botonEspecial">
-                  <button onClick={handleP1}>
-                    Revisar <FontAwesomeIcon icon={faArrowRight} />
-                    <span className="overlay"></span>
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div className="card">
-              <a href="#">
-                <img
-                  className="rounded-t-lg"
-                  src="Gestion de archivos.png"
-                  alt="Portfolio item"
-                />
-              </a>
-              <div className="p-5">
-                <a href="#">
-                  <h5>Gestión de archivos</h5>
-                </a>
-                <p>
-                  Sistema de gestion de archivos para la Universidad Técnica de
-                  Ambato UTA.
-                </p>
-                <div className="botonEspecial">
-                  <button onClick={handleP2}>
-                    Revisar <FontAwesomeIcon icon={faArrowRight} />
-                    <span className="overlay"></span>
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div className="card">
-              <a href="#">
-                <img
-                  className="rounded-t-lg"
-                  src="Sistema Permisos.png"
-                  alt="Portfolio item"
-                />
-              </a>
-              <div className="p-5">
-                <a href="#">
-                  <h5>Sistema de permisos</h5>
-                </a>
-                <p>
-                  Sistema de permisos y vacaciones para la mancomunidad de
-                  transito de tungurahua.
-                </p>
-                <div className="botonEspecial">
-                  <button onClick={handleP3}>
-                    Revisar <FontAwesomeIcon icon={faArrowRight} />
-                    <span className="overlay"></span>
-                  </button>
-                </div>
-              </div>
-            </div>
+  <div className="contenido-seccion">
+    <h2>Portfolio</h2>
+    <div className="grid-container">
+      <div className="card">
+        <a href="#">
+          <img className="rounded-t-lg" src="Gestion Domcumental.jpeg" alt="Portfolio item" />
+        </a>
+        <div className="p-5">
+          <a href="#">
+            <h5>Sistema Documental FISEI</h5>
+          </a>
+          <p>Sistema Documental FISEI de la Facultad de Ingeniería en Sistemas, Electrónica e Industrial</p>
+          <div className="botonEspecial">
+            <button onClick={handleP1}>
+              Revisar <FontAwesomeIcon icon={faArrowRight} />
+              <span className="overlay"></span>
+            </button>
           </div>
         </div>
-      </section>
+      </div>
+      <div className="card">
+        <a href="#">
+          <img className="rounded-t-lg" src="Gestion de archivos.png" alt="Portfolio item" />
+        </a>
+        <div className="p-5">
+          <a href="#">
+            <h5>Gestión de archivos</h5>
+          </a>
+          <p>Sistema de gestion de archivos para la Universidad Técnica de Ambato UTA.</p>
+          <div className="botonEspecial">
+            <button onClick={handleP2}>
+              Revisar <FontAwesomeIcon icon={faArrowRight} />
+              <span className="overlay"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div className="card">
+        <a href="#">
+          <img className="rounded-t-lg" src="Sistema Permisos.png" alt="Portfolio item" />
+        </a>
+        <div className="p-5">
+          <a href="#">
+            <h5>Sistema de permisos</h5>
+          </a>
+          <p>Sistema de permisos y vacaciones para la mancomunidad de transito de tungurahua.</p>
+          <div className="botonEspecial">
+            <button onClick={handleP3}>
+              Revisar <FontAwesomeIcon icon={faArrowRight} />
+              <span className="overlay"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
       <section id="contacto" className="contacto">
         <div className="contenido-seccion">
