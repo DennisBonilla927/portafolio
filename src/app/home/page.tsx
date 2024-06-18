@@ -72,18 +72,18 @@ export default function Inicio() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log(formData);
-    
+
     try {
       const response = await fetch("/api/send", {
         method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
       const result = await response.json();
       console.log(result);
-      
+
       if (response.ok) {
         mostrarMensajeToast("Correo enviado exitosamente");
       } else {
@@ -130,7 +130,7 @@ export default function Inicio() {
   const handleP2 = () => {
     window.open(
       "https://github.com/jojeda517/Seguridad-Frontend.git",
-      
+
       "_blank"
     );
   };
@@ -430,11 +430,8 @@ export default function Inicio() {
       <section className="portfolio" id="portfolio">
         <div className="contenido-seccion">
           <h2>Portfolio</h2>
-          <div className="fila grid ml-32">
-            <div
-              className="card max-w-sm bg-white border border-gray-200 rounded-lg shadow"
-              style={{ backgroundColor: "#1e2326", borderColor: "#1e2326" }}
-            >
+          <div className="grid-container">
+            <div className="card">
               <a href="#">
                 <img
                   className="rounded-t-lg"
@@ -444,12 +441,11 @@ export default function Inicio() {
               </a>
               <div className="p-5">
                 <a href="#">
-                  <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                  Sistema Documental FISEI
-                  </h5>
+                  <h5>Sistema Documental FISEI</h5>
                 </a>
-                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                Sistema Documental FISEI de la Facultad de Ingeniería en Sistemas, Electrónica e Industrial
+                <p>
+                  Sistema Documental FISEI de la Facultad de Ingeniería en
+                  Sistemas, Electrónica e Industrial
                 </p>
                 <div className="botonEspecial">
                   <button onClick={handleP1}>
@@ -459,11 +455,7 @@ export default function Inicio() {
                 </div>
               </div>
             </div>
-            {/* Repite el bloque anterior para los otros tres elementos */}
-            <div
-              className="card max-w-sm bg-white border border-gray-200 rounded-lg shadow"
-              style={{ backgroundColor: "#1e2326", borderColor: "#1e2326" }}
-            >
+            <div className="card">
               <a href="#">
                 <img
                   className="rounded-t-lg"
@@ -473,12 +465,11 @@ export default function Inicio() {
               </a>
               <div className="p-5">
                 <a href="#">
-                  <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                  Gestión de archivos
-                  </h5>
+                  <h5>Gestión de archivos</h5>
                 </a>
-                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                Sistema de gestion de archivos para la Universidad Técnica de Ambato UTA.
+                <p>
+                  Sistema de gestion de archivos para la Universidad Técnica de
+                  Ambato UTA.
                 </p>
                 <div className="botonEspecial">
                   <button onClick={handleP2}>
@@ -488,11 +479,7 @@ export default function Inicio() {
                 </div>
               </div>
             </div>
-          </div>
-          <div
-              className="mt-10 ml-96 card max-w-sm bg-white border border-gray-200 rounded-lg shadow"
-              style={{ backgroundColor: "#1e2326", borderColor: "#1e2326" }}
-            >
+            <div className="card">
               <a href="#">
                 <img
                   className="rounded-t-lg"
@@ -502,12 +489,11 @@ export default function Inicio() {
               </a>
               <div className="p-5">
                 <a href="#">
-                  <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                  Sistema de permisos
-                  </h5>
+                  <h5>Sistema de permisos</h5>
                 </a>
-                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                Sistema de permisos y vacaciones para la mancomunidad de transito de tungurahua.
+                <p>
+                  Sistema de permisos y vacaciones para la mancomunidad de
+                  transito de tungurahua.
                 </p>
                 <div className="botonEspecial">
                   <button onClick={handleP3}>
@@ -517,6 +503,7 @@ export default function Inicio() {
                 </div>
               </div>
             </div>
+          </div>
         </div>
       </section>
 
@@ -526,47 +513,47 @@ export default function Inicio() {
           <div className="fila">
             {/* Formulario */}
             <form onSubmit={handleSubmit} className="col">
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Tú Nombre"
-                  onChange={handleChange}
-                  value={formData.name}
-                />
-                <input
-                  type="text"
-                  name="phone"
-                  placeholder="Número telefónico"
-                  onChange={handleChange}
-                  value={formData.phone}
-                />
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Dirección de correo"
-                  onChange={handleChange}
-                  value={formData.email}
-                />
-                <input
-                  type="text"
-                  name="subject"
-                  placeholder="Tema"
-                  onChange={handleChange}
-                  value={formData.subject}
-                />
-                <textarea
-                  name="message"
-                  cols={30}
-                  rows={10}
-                  placeholder="Mensaje"
-                  onChange={handleChange}
-                  value={formData.message}
-                ></textarea>
-                <button type="submit">
-                  Enviar Mensaje <FontAwesomeIcon icon={faPaperPlane} />
-                  <span className="overlay"></span>
-                </button>
-              </form>
+              <input
+                type="text"
+                name="name"
+                placeholder="Tú Nombre"
+                onChange={handleChange}
+                value={formData.name}
+              />
+              <input
+                type="text"
+                name="phone"
+                placeholder="Número telefónico"
+                onChange={handleChange}
+                value={formData.phone}
+              />
+              <input
+                type="email"
+                name="email"
+                placeholder="Dirección de correo"
+                onChange={handleChange}
+                value={formData.email}
+              />
+              <input
+                type="text"
+                name="subject"
+                placeholder="Tema"
+                onChange={handleChange}
+                value={formData.subject}
+              />
+              <textarea
+                name="message"
+                cols={30}
+                rows={10}
+                placeholder="Mensaje"
+                onChange={handleChange}
+                value={formData.message}
+              ></textarea>
+              <button type="submit">
+                Enviar Mensaje <FontAwesomeIcon icon={faPaperPlane} />
+                <span className="overlay"></span>
+              </button>
+            </form>
             {/* Mapa */}
           </div>
         </div>
@@ -577,12 +564,12 @@ export default function Inicio() {
           <FontAwesomeIcon icon={faAnglesUp} />
         </a>
         <div className="redes">
-        <a href="https://github.com/DennisBonilla927">
-              <FontAwesomeIcon icon={faGithub} />
-            </a>
-            <a href="https://www.linkedin.com/in/dennis-bonilla-granja-15295230a/">
-              <FontAwesomeIcon icon={faLinkedinIn} />
-            </a>
+          <a href="https://github.com/DennisBonilla927">
+            <FontAwesomeIcon icon={faGithub} />
+          </a>
+          <a href="https://www.linkedin.com/in/dennis-bonilla-granja-15295230a/">
+            <FontAwesomeIcon icon={faLinkedinIn} />
+          </a>
         </div>
       </footer>
 
