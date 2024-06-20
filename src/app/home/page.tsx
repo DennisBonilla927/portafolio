@@ -183,7 +183,7 @@ export default function Inicio() {
                 <Link href="#curriculum">CURRICULUM</Link>
               </li>
               <li>
-                <Link href="#portfolio">PORTFOLIO</Link>
+                <Link href="#portfolio">PORTAFOLIO</Link>
               </li>
               <li>
                 <Link href="#contacto">CONTACTO</Link>
@@ -238,7 +238,7 @@ export default function Inicio() {
                   <strong>LInkedin</strong> Dennis Bonilla Granja
                 </li>
                 <li>
-                  <strong>Website</strong> www.example.com
+                  <strong>Website</strong> portafolio-coral-one.vercel.app
                 </li>
                 <li>
                   <strong>Dirección</strong> Baños, Ecuador
@@ -429,7 +429,7 @@ export default function Inicio() {
 
       <section className="portfolio" id="portfolio">
   <div className="contenido-seccion">
-    <h2>Portfolio</h2>
+    <h2>Portafolio</h2>
     <div className="grid-container">
       <div className="card">
         <a href="#">
