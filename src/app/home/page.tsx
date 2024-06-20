@@ -238,7 +238,7 @@ export default function Inicio() {
                   <strong>LInkedin</strong> Dennis Bonilla Granja
                 </li>
                 <li>
-                  <strong>Website</strong> portafolio-coral-one.vercel.app
+                  <strong>Website</strong> dennis-bonilla-one.vercel.app
                 </li>
                 <li>
                   <strong>Dirección</strong> Baños, Ecuador
